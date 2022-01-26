@@ -1,4 +1,4 @@
 ---
 hadoop_user: hadoop
 hadoop_group: hadoop
-hadoop_download_url: http://apache.cs.utah.edu/hadoop/common/hadoop-2.7.1/hadoop-2.7.1.tar.gz
+hadoop_download_url: https://dlcdn.apache.org/hadoop/common/hadoop-3.3.1/hadoop-3.3.1-src.tar.gz
