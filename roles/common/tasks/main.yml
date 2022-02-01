@@ -5,7 +5,7 @@
 - user: name={{ hadoop_user }} comment="Hadoop" group={{ hadoop_group}} shell=/bin/bash
 
 #for ssh
-#- authorized_key: user={{ hadoop_user }} key="{{ lookup('file', '../templates/hadoop_rsa.pub') }}"
+- authorized_key: user={{ hadoop_user }} key="{{ lookup('file', '../templates/hadoop_rsa.pub') }}"
 
 # this is a bandwidth heavy task which downloads hadoop binaries to each node
 - name: Download hadoop
