@@ -1,9 +1,9 @@
 [hadoop-master]
-138.68.143.130             ansible_connection=local
+46.101.62.95            ansible_connection=local ansible_ssh_user=root
 
 [hadoop-data]
-138.68.177.255             ansible_connection=ssh ansible_ssh_user=root
-#34.125.1.252              ansible_connection=ssh ansible_ssh_private_key_file=~/.ssh/id_rsa
+46.101.6.242            ansible_connection=ssh ansible_ssh_user=root
+178.62.102.36           ansible_connection=ssh ansible_ssh_user=root
 
 [hadoop-master:vars]
 nodesfile=nodes-dev.yml

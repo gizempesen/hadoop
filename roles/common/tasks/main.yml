@@ -4,13 +4,19 @@
 - group: name={{ hadoop_group}} state=present
 - user: name={{ hadoop_user }} comment="Hadoop" group={{ hadoop_group}} shell=/bin/bash
 
+#sudo apt install default-jdk
+- name: Install Jdk
+  apt:
+    name: default-jdk
+    state: present
+
 #for ssh
-- authorized_key: user={{ hadoop_user }} key="{{ lookup('file', '../templates/hadoop_rsa.pub') }}"
+#- authorized_key: user={{ hadoop_user }} key="{{ lookup('file', '../templates/hadoop_rsa.pub') }}"
 
 # this is a bandwidth heavy task which downloads hadoop binaries to each node
 - name: Download hadoop
   get_url: url={{ hadoop_download_url }} dest=/home/{{ hadoop_user }}/{{ hadoop_version_tar }}
-  environment: proxy_env
+#  environment: proxy_env
 
 - name: Extract hadoop archive
   unarchive: src=/home/{{ hadoop_user }}/{{ hadoop_version_tar }} dest=/usr/local owner={{ hadoop_user}} group={{ hadoop_group }} creates=/usr/local/hadoop copy=no
@@ -50,3 +56,4 @@
     - {src: "mapred-site.xml", dest: "/usr/local/hadoop/etc/hadoop/mapred-site.xml"}
 
 - lineinfile: dest=/usr/local/hadoop/etc/hadoop/hadoop-env.sh regexp="^export JAVA_HOME" line="export JAVA_HOME=$(readlink -f /usr/bin/java | sed "s:bin/java::")"
+

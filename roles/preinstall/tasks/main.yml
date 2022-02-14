@@ -1,0 +1,22 @@
+---
+- name: Update
+  command: apt-get update
+
+#sudo apt install default-jdk
+- name: Install Jdk
+  apt:
+    name: default-jdk
+    state: present
+
+#apt-get install -y libffi-dev libssl-dev
+- name: Install Libs
+  apt:
+    name: libffi-dev
+    state: present
+    update_cache: no
+
+
+- name: 'checking jdk is installled or not'
+  shell: 'java -version'
+  ignore_errors: yes
+  register: x

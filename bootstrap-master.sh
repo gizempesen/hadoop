@@ -3,19 +3,26 @@
 #export https_proxy=https://proxy.company.com:8080
 #export http_proxy=http://proxy.company.com:8080
 
+#sudo apt update
 sudo -E apt-get update
-sudo -E apt-get install -y unzip python-pip python-virtualenv python-dev
-sudo -E pip install ansible
 
-chmod 600 /home/vagrant/.ssh/id_rsa
+#sudo apt install default-jdk
+sudo -E apt install default-jdk
+
+#sudo apt-get install ansible
+
+sudo -E apt-get install -y unzip python-pip3 python-dev
+sudo -E pip3 install ansible
+
+#chmod 600 /home/vagrant/.ssh/id_rsa
 
 ### Use heat (an orchestration tool to provision in OpenStack) to prepare servers for Hadoop ###
 # create python virtualenv in ~/venv
-virtualenv venv
-chown -R vagrant:vagrant venv
+#virtualenv venv
+#chown -R vagrant:vagrant venv
 # install heat client
 apt-get install -y libffi-dev libssl-dev
-/home/vagrant/venv/bin/pip install python-heatclient python-openstackclient pyopenssl ndg-httpsclient pyasn1
+#/home/vagrant/venv/bin/pip install python-heatclient python-openstackclient pyopenssl ndg-httpsclient pyasn1
 # setup environment to connect to openstack using heat
 #source ~/venv/bin/activate
 #cd ~/src
@@ -53,3 +60,4 @@ apt-get install -y libffi-dev libssl-dev
 #/usr/local/hadoop/sbin/stop-yarn.sh
 #$HADOOP_HOME/sbin/slaves.sh jps
 #hadoop jar /usr/local/hadoop/share/hadoop/mapreduce/hadoop-mapreduce-examples-2.7.1.jar pi 10 30
+#/usr/local/hadoop/bin/hadoop jar /usr/local/hadoop/share/hadoop/mapreduce/hadoop-mapreduce-examples-3.0.3.jar pi 10 30

@@ -2,5 +2,6 @@
 hadoop_user: hadoop
 hadoop_group: hadoop
 hadoop_download_url: https://archive.apache.org/dist/hadoop/core/hadoop-3.0.3/hadoop-3.0.3.tar.gz
+hadoop_mds_download_url: https://archive.apache.org/dist/hadoop/core/hadoop-3.0.3/hadoop-3.0.3.tar.gz.mds
 hadoop_version: hadoop-3.0.3
 hadoop_version_tar: hadoop-3.0.3.tar.gz
