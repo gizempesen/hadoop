@@ -1,7 +1,7 @@
 ---
 - name: Install hadoop master node
   hosts: hadoop-master
-  gather_facts: true
+  gather_facts: false
   become: yes
   remote_user: ubuntu
 
@@ -12,7 +12,7 @@
 
 - name: Install hadoop data node
   hosts: hadoop-data
-  gather_facts: true
+  gather_facts: false
   become: yes
   remote_user: ubuntu
 

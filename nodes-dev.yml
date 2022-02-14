@@ -1,3 +1,6 @@
+vars_files:
+  - ips.yml
+
 nodes:
   - hostname: hadoop-master
     ip: 46.101.62.95
