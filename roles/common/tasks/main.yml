@@ -14,19 +14,21 @@
 #- authorized_key: user={{ hadoop_user }} key="{{ lookup('file', '../templates/hadoop_rsa.pub') }}"
 
 # this is a bandwidth heavy task which downloads hadoop binaries to each node
-- name: Download hadoop
+- name: Download hadoop tar
   get_url: url={{ hadoop_download_url }} dest=/home/{{ hadoop_user }}/{{ hadoop_version_tar }}
-#  environment: proxy_env
+
+- name: Download hadoop md
+  get_url: url={{ hadoop_mds_download_url }} dest=/home/{{ hadoop_user }}/{{ hadoop_version_mds }}
+
+#shasum -a 256 ansible
+- name: sha
+  command: shasum -a 256 /home/{{ hadoop_user }}/{{ hadoop_version_tar }}
 
 - name: Extract hadoop archive
   unarchive: src=/home/{{ hadoop_user }}/{{ hadoop_version_tar }} dest=/usr/local owner={{ hadoop_user}} group={{ hadoop_group }} creates=/usr/local/hadoop copy=no
-  
-# this is an alternative for the local deployment where the hadoop binary can be cached locally
-#- name: unpack hadoop
-#  unarchive: src=/home/vagrant/src/roles/common/templates/hadoop-2.7.1.tar.gz dest=/usr/local owner={{ hadoop_user}} group={{ hadoop_group }} creates=/usr/local/hadoop
 
 #sudo mv hadoop-3.0.3 /usr/local/hadoop
-- command: mv /usr/local/{{ hadoop_version }} /usr/local/hadoop creates=/usr/local/hadoop removes=/usr/local/{{ hadoop_version }}
+- command: mv {{ hadoop_version }} /usr/local/hadoop creates=/usr/local/hadoop removes=/usr/local/{{ hadoop_version }}
 
 #changing .bashrc file
 #- lineinfile: dest=/home/hadoop/.bashrc regexp="HADOOP_HOME=" line="export HADOOP_HOME=/usr/local/hadoop"
@@ -41,7 +43,7 @@
   lineinfile: dest=/etc/hosts regexp='{{ item.ip }}' line="{{ item.ip }} {{ item.hostname }}" state=present
   with_items: "{{ nodes }}"
 
-- lineinfile: dest=/etc/hosts regexp='127.0.1.1' state=absent
+#- lineinfile: dest=/etc/hosts regexp='127.0.1.1' state=absent
 
 - file: path=/home/{{ hadoop_user }}/tmp state=directory owner={{ hadoop_user}} group={{ hadoop_group }} mode=750
 - file: path=/home/{{ hadoop_user }}/hadoop-data/hdfs/namenode state=directory owner={{ hadoop_user}} group={{ hadoop_group }} mode=750

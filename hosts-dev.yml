@@ -2,7 +2,7 @@
 139.59.160.231            ansible_connection=local ansible_ssh_user=root
 
 [hadoop-data]
-178.128.165.62            ansible_connection=ssh ansible_ssh_user=root
+159.65.25.224            ansible_connection=ssh ansible_ssh_user=root
 46.101.60.15              ansible_connection=ssh ansible_ssh_user=root
 
 [hadoop-master:vars]
