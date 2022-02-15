@@ -1,7 +1,4 @@
 ---
-- name: Update
-  command: apt-get update
-
 #sudo apt install default-jdk
 - name: Install Jdk
   apt:

@@ -1,10 +1,7 @@
-vars_files:
-  - ips.yml
-
 nodes:
   - hostname: hadoop-master
-    ip: 46.101.62.95
+    ip: 139.59.160.231
   - hostname: hadoop-data1
-    ip: 46.101.6.242
+    ip: 178.128.165.62
   - hostname: hadoop-data2
-    ip: 178.62.102.36
+    ip: 46.101.60.15
